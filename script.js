@@ -57,15 +57,15 @@ function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
 
-// Set Background, Greeting and Figcaption
+// Set Background and Greeting
 function setBgGreet() {
   let i = 1;
   let today = new Date(),
     hour = today.getHours();
-  const base_morning = 'assets/images/morning';
+  const base_morning = 'assets/images/morning/';
   const base_day = 'assets/images/day/';
-  const base_evening = 'assets/images/evening';
-  const base_night = 'assets/images/night';
+  const base_evening = 'assets/images/evening/';
+  const base_night = 'assets/images/night/';
   const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
   if (hour < 12) {
     // Morning
@@ -98,7 +98,6 @@ function setBgGreet() {
   }
 
   function getImage() {
-    console.log(i % images.length)
     if (hour + i === 20){
       i = 0;
       hour = 0;
@@ -107,23 +106,24 @@ function setBgGreet() {
     document.body.style.backgroundImage = `url(${imageSrc})`;
     i++;
   }
-  const blockquote = document.querySelector('blockquote');
-  const figcaption = document.querySelector('figcaption');
-
-  async function getQuote() {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
-    const res = await fetch(url);
-    const data = await res.json();
-    blockquote.textContent = data.quoteText;
-    figcaption.textContent = data.quoteAuthor;
-  }
-
-  const btn = document.querySelector('.btn');
-
-  document.addEventListener('DOMContentLoaded', getQuote);
-
-  btn.addEventListener('click', getImage, getQuote);
+  btn.addEventListener('click', getImage);
 }
+
+//Set Figcaaption
+const blockquote = document.querySelector('blockquote');
+const figcaption = document.querySelector('figcaption');
+
+async function getQuote() {
+  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+  const res = await fetch(url);
+  const data = await res.json();
+  blockquote.textContent = data.quoteText;
+  figcaption.textContent = data.quoteAuthor;
+}
+
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', getQuote);
+
 
 // Get Name
 function getName() {
