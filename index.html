@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/owfont-regular.css">
     <link rel="stylesheet" href="style.css" />
     <title>momentum</title>
   </head>
   <body>
-    <button class="btn"></button>
+      <button class="btn"></button>
     <time class="time"></time>
     <h1>
       <span class="greeting"></span>
@@ -17,14 +18,25 @@
     <h2>What Is Your Focus For Today?</h2>
     <h2 class="focus" contenteditable="true"></h2>
 
-    <figure class="quote">
-    <blockquote>
-      You were not born a winner, and you were not born a loser. You are what you make yourself be.
-    </blockquote>
-    <figcaption>
-      Lou Holtz
-    </figcaption>
-  </figure>
+    <div class="flex_row align_items_center">
+      <div class="flex_column align_items_center">
+        <div class="city" contenteditable="true">Minsk</div>
+        <i class="weather-icon owf"></i>
+        <div class="temperature"></div>
+        <div class="weather-description"></div>
+      </div>
+
+      <div class="flex_column">
+        <figure class="quote">
+        <blockquote>
+          You were not born a winner, and you were not born a loser. You are what you make yourself be.
+        </blockquote>
+        <figcaption>
+          Lou Holtz
+        </figcaption>
+        </figure>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

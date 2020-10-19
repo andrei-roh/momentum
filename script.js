@@ -48,7 +48,7 @@ const yearMonths = {
 hour = hour % 24;
 
 // Output Time
-time.innerHTML = `${(weekDays[weekDay])}<span> </span>${(day)}<span> </span>${(yearMonths[month])}<br>${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
+time.innerHTML = `${(weekDays[weekDay])}<span> </span>${(day)}<span> </span>${(yearMonths[month])}<span> </span>${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 setTimeout(showTime, 1000);
 }
 
@@ -84,6 +84,7 @@ function setBgGreet() {
   } else if (hour < 24) {
     // Evening
     base = base_evening;
+    if (hour >= 19){ hour = 0 }
     let imageSrc = base_evening + images[hour];
     document.body.style.backgroundImage = `url(${imageSrc})`;
     greeting.textContent = 'Good Evening, ';
@@ -98,9 +99,9 @@ function setBgGreet() {
   }
 
   function getImage() {
-    if (hour + i === 20){
-      i = 0;
+    if (hour + i === 19){
       hour = 0;
+      i = 0;
     }
     let imageSrc = base + images[hour + i];
     document.body.style.backgroundImage = `url(${imageSrc})`;
@@ -124,6 +125,32 @@ async function getQuote() {
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', getQuote);
 
+//Get Weather
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const city = document.querySelector('.city');
+
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=bffd331380de75029aefc8b85884024b&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  weatherIcon.className = 'weather-icon owf';
+  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+  weatherDescription.textContent = data.weather[0].description;
+}
+
+function setCity(event) {
+  if (event.code === 'Enter') {
+    getWeather();
+    city.blur();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
 
 // Get Name
 function getName() {
