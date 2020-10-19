@@ -13,19 +13,43 @@ function showTime() {
     hour = today.getHours(),
     min = today.getMinutes(),
     sec = today.getSeconds();
+    weekDay = today.getDay();
+    day = today.getDate();
+    month = today.getMonth();
 
-  // Set AM or PM
-  const amPm = hour >= 12 ? 'PM' : 'AM';
+//Get day of week
+const weekDays = {
+  '0': 'Sunday',
+  '1': 'Monday',
+  '2': 'Tuesday',
+  '3': 'Wednesday',
+  '4': 'Thursday',
+  '5': 'Friday',
+  '6': 'Saturday'
+}
 
-  // 12hr Format
-  hour = hour % 12 || 12;
+//Get month of year
+const yearMonths = {
+  '0': 'January',
+  '1': 'February',
+  '2': 'March',
+  '3': 'April',
+  '4': 'May',
+  '5': 'June',
+  '6': 'Jule',
+  '7': 'August',
+  '8': 'September',
+  '9': 'October',
+  '10': 'November',
+  '11': 'December'
+}
 
-  // Output Time
-  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
-    sec
-  )} ${showAmPm ? amPm : ''}`;
+// 24hr Format
+hour = hour % 24;
 
-  setTimeout(showTime, 1000);
+// Output Time
+time.innerHTML = `${(weekDays[weekDay])}<span> </span>${(day)}<span> </span>${(yearMonths[month])}<br>${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
+setTimeout(showTime, 1000);
 }
 
 // Add Zeros
@@ -41,25 +65,48 @@ function setBgGreet() {
   if (hour < 12) {
     // Morning
     document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+      "url('assets/images/morning/03.jpg')";
+    document.body.style.color = 'white';
     greeting.textContent = 'Good Morning, ';
   } else if (hour < 18) {
     // Afternoon
     document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = 'Good Afternoon, ';
-  } else {
+    "url('assets/images/day/03.jpg')";
+    document.body.style.color = 'white';
+    greeting.textContent = 'Good Day, ';
+  } else if (hour < 24) {
     // Evening
     document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
+    "url('assets/images/evening/02.jpg')";
     greeting.textContent = 'Good Evening, ';
+    document.body.style.color = 'white';
+  } else {
+    // Night
+    document.body.style.backgroundImage =
+    "url('assets/images/night/02.jpg')";
+    greeting.textContent = 'Good Night, ';
     document.body.style.color = 'white';
   }
 }
 
 // Get Name
 function getName() {
-  if (localStorage.getItem('name') === null) {
+  name.addEventListener ("click", () => {
+    if (localStorage.getItem('name') === '[Enter Name]'){
+      name.textContent = '';
+    } else {
+      name.textContent = localStorage.getItem('name');
+    }
+  });
+  name.addEventListener("blur", () => {
+    if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
+      name.textContent = '[Enter Name]';
+    }
+    else {
+      name.textContent = localStorage.getItem('name');
+    }
+  });
+  if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
     name.textContent = '[Enter Name]';
   } else {
     name.textContent = localStorage.getItem('name');
@@ -81,7 +128,21 @@ function setName(e) {
 
 // Get Focus
 function getFocus() {
-  if (localStorage.getItem('focus') === null) {
+  focus.addEventListener ("click", () => {
+    if (localStorage.getItem('focus') === '[Enter Focus]') {
+      focus.textContent = '';
+    } else {
+      focus.textContent = localStorage.getItem('focus');
+    }
+  });
+  focus.addEventListener("blur", () => {
+    if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
+      focus.textContent = '[Enter Focus]';
+    } else {
+      focus.textContent = localStorage.getItem('focus');
+    }
+  });
+  if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
     focus.textContent = '[Enter Focus]';
   } else {
     focus.textContent = localStorage.getItem('focus');
