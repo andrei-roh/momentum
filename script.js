@@ -57,36 +57,72 @@ function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
 
-// Set Background and Greeting
+// Set Background, Greeting and Figcaption
 function setBgGreet() {
+  let i = 1;
   let today = new Date(),
     hour = today.getHours();
-
+  const base_morning = 'assets/images/morning';
+  const base_day = 'assets/images/day/';
+  const base_evening = 'assets/images/evening';
+  const base_night = 'assets/images/night';
+  const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
   if (hour < 12) {
     // Morning
-    document.body.style.backgroundImage =
-      "url('assets/images/morning/03.jpg')";
+    base = base_morning;
+    let imageSrc = base_morning + images[hour];
+    document.body.style.backgroundImage = `url(${imageSrc})`;
     document.body.style.color = 'white';
     greeting.textContent = 'Good Morning, ';
   } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-    "url('assets/images/day/03.jpg')";
+    // Day
+    base = base_day;
+    let imageSrc = base_day + images[hour];
+    document.body.style.backgroundImage = `url(${imageSrc})`;
     document.body.style.color = 'white';
     greeting.textContent = 'Good Day, ';
   } else if (hour < 24) {
     // Evening
-    document.body.style.backgroundImage =
-    "url('assets/images/evening/02.jpg')";
+    base = base_evening;
+    let imageSrc = base_evening + images[hour];
+    document.body.style.backgroundImage = `url(${imageSrc})`;
     greeting.textContent = 'Good Evening, ';
     document.body.style.color = 'white';
   } else {
     // Night
-    document.body.style.backgroundImage =
-    "url('assets/images/night/02.jpg')";
+    base = base_night;
+    let imageSrc = base_night + images[hour];
+    document.body.style.backgroundImage = `url(${imageSrc})`;
     greeting.textContent = 'Good Night, ';
     document.body.style.color = 'white';
   }
+
+  function getImage() {
+    console.log(i % images.length)
+    if (hour + i === 20){
+      i = 0;
+      hour = 0;
+    }
+    let imageSrc = base + images[hour + i];
+    document.body.style.backgroundImage = `url(${imageSrc})`;
+    i++;
+  }
+  const blockquote = document.querySelector('blockquote');
+  const figcaption = document.querySelector('figcaption');
+
+  async function getQuote() {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+    const res = await fetch(url);
+    const data = await res.json();
+    blockquote.textContent = data.quoteText;
+    figcaption.textContent = data.quoteAuthor;
+  }
+
+  const btn = document.querySelector('.btn');
+
+  document.addEventListener('DOMContentLoaded', getQuote);
+
+  btn.addEventListener('click', getImage, getQuote);
 }
 
 // Get Name
