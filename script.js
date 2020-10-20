@@ -134,6 +134,8 @@ const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
 
 //Check localStorage for load last City
+document.addEventListener('DOMContentLoaded', getWeather);
+
 if (localStorage.getItem('city') != 'Minsk') {
   city.textContent = localStorage.getItem('city');
 }
@@ -163,7 +165,6 @@ function setCity(event) {
 }
 
 city.addEventListener('keypress', setCity);
-document.addEventListener('DOMContentLoaded', getWeather);
 
 // Get Name
 function getName() {
