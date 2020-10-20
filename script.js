@@ -157,8 +157,6 @@ function setCity(event) {
     city.blur();
   }
 }
-city.textContent = localStorage.getItem('city');
-
 
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
