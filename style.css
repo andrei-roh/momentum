@@ -156,3 +156,22 @@ h2 {
 .width_10 {
   width: 10px;
 }
+
+#loader{
+position: fixed;
+left: 0;
+top: 0;
+right:0;
+bottom:0;
+background: #56526a;
+z-index: 30;}
+
+#loader .svg_anm {
+position: absolute;
+left: 50%;
+top: 50%;
+width: 160px;
+height: 160px;
+background: url(assets/icons/tail-spin.svg) center center no-repeat;
+background-size: 160px;
+margin: -80px 0 0 -80px;}
