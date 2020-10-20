@@ -9,34 +9,38 @@
     <title>momentum</title>
   </head>
   <body>
-      <button class="btn"></button>
-    <time class="time"></time>
-    <h1>
-      <span class="greeting"></span>
-      <span class="name" contenteditable="true"></span>
-    </h1>
-    <h2>What Is Your Focus For Today?</h2>
-    <h2 class="focus" contenteditable="true"></h2>
-
-    <div class="flex_row align_items_center">
-      <div class="flex_column align_items_center">
-        <div class="city" contenteditable="true">Minsk</div>
-        <i class="weather-icon owf"></i>
-        <div class="temperature"></div>
-        <div class="weather-description"></div>
+    <div class="overlay">
+      <div class="flex_row top_block">
+        <button class="btn"></button>
+          <div class="flex_column align_items_center weather_background">
+            <i class="weather-icon owf"></i>
+            <div class="windSpeed cursor_help" title="Wind Speed"></div>
+            <div class="humidity cursor_help" title="Humidity"></div>
+            <div class="temperature cursor_help" title="Temperature"></div>
+            <div class="weather-description cursor_help" title="Weather Description"></div>
+          </div>
       </div>
-
-      <div class="flex_column">
-        <figure class="quote">
+      <time class="time"></time>
+      <h1>
+        <span class="greeting"></span>
+        <span class="name" contenteditable="true"></span>
+      </h1>
+      <h2>What Is Your Focus For Today?</h2>
+      <h2 class="focus" contenteditable="true"></h2>
+      <div class="flex_row justify_content_center">
+        <h2>Wher are You?</h2>
+        <div class="width_10"></div>
+        <div class="city" contenteditable="true">Minsk</div>
+      </div>
+      <figure class="quote justify_content_center">
         <blockquote>
           You were not born a winner, and you were not born a loser. You are what you make yourself be.
         </blockquote>
         <figcaption>
           Lou Holtz
         </figcaption>
-        </figure>
-      </div>
-    </div>
+      </figure>
+    <div>
     <script src="script.js"></script>
   </body>
 </html>
