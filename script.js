@@ -134,14 +134,12 @@ const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
 
 //Check localStorage for load last City
-document.addEventListener('DOMContentLoaded', getWeather);
-
 if (localStorage.getItem('city') != 'Minsk') {
   city.textContent = localStorage.getItem('city');
 }
 
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=bffd331380de75029aefc8b85884024b&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=08f2a575dda978b9c539199e54df03b0&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
 
@@ -164,6 +162,7 @@ function setCity(event) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
 
 // Get Name
