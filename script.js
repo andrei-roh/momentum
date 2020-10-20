@@ -147,6 +147,12 @@ async function getWeather() {
   humidity.textContent = `${data.main.humidity}%`
 }
 
+city.addEventListener ("click", () => {
+  if (localStorage.getItem('city') != ''){
+    city.textContent = '';
+  }
+});
+
 function setCity(event) {
   if (event.code === 'Enter') {
     if (city.textContent === '') {
@@ -159,18 +165,24 @@ function setCity(event) {
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);
+  if (localStorage.getItem('city') === null || localStorage.getItem('city') === '' || city.textContent === ''){
+    city.textContent = localStorage.getItem('city');
+  }
+});
+
 city.addEventListener('keypress', setCity);
+document.addEventListener('DOMContentLoaded', getWeather);
 
 // Get Name
 function getName() {
-  name.addEventListener ("click", () => {
+  name.addEventListener ('click', () => {
     if (localStorage.getItem('name') === '[Enter Name]'){
       name.textContent = '';
     } else {
       name.textContent = localStorage.getItem('name');
     }
   });
-  name.addEventListener("blur", () => {
+  name.addEventListener('blur', () => {
     if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
       name.textContent = '[Enter Name]';
     }
@@ -200,14 +212,14 @@ function setName(e) {
 
 // Get Focus
 function getFocus() {
-  focus.addEventListener ("click", () => {
+  focus.addEventListener ('click', () => {
     if (localStorage.getItem('focus') === '[Enter Focus]') {
       focus.textContent = '';
     } else {
       focus.textContent = localStorage.getItem('focus');
     }
   });
-  focus.addEventListener("blur", () => {
+  focus.addEventListener('blur', () => {
     if (localStorage.getItem('focus') === null || localStorage.getItem('focus') === '') {
       focus.textContent = '[Enter Focus]';
     } else {
