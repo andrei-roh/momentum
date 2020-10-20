@@ -162,8 +162,8 @@ function setCity(event) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
+document.addEventListener('DOMContentLoaded', getWeather);
 
 // Get Name
 function getName() {
