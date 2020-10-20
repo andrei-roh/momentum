@@ -164,7 +164,7 @@ function setCity(event) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener ("blur", () => {
   if (localStorage.getItem('city') === null || localStorage.getItem('city') === '' || city.textContent === ''){
     city.textContent = localStorage.getItem('city');
   }
