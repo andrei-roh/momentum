@@ -156,6 +156,9 @@ h2 {
 .width_10 {
   width: 10px;
 }
+.min_width_25 {
+  min-width: 25px;
+}
 
 #loader{
 position: fixed;
