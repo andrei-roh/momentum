@@ -14,7 +14,7 @@ body {
   height: 90vh;
   background-size: cover;
   color: #000000;
-  transition: background-image 1.5s ease-in-out;
+  transition: background-image 2s ease-in-out;
 }
 h1 {
   display: flex;
